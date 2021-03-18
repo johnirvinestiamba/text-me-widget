@@ -22,12 +22,17 @@ class TelcoController extends Controller {
      */
     public function sendMessage(Request $request)
     {
-        // Validate body
         $this->validate($request, [
             'reply_to' => 'required|string',
             'message' => 'required|string'
         ]);
         $data = $request->json()->all();
+
+        $message = 'This phone number is requesting to communicate via SMS' . "\n";
+        $message = $message . 'Phone number: ' . $data['reply_to'] . "\n";
+        $message = $message . 'About this topic: ' .  $data['message'];
+
+        $data['message'] = $message;
 
         $response = $this->telco->sendMessage($data);
 
