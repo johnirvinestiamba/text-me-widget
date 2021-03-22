@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Integrations\Api\Telco;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/message/send', 'TelcoController@sendMessage');
+Route::post('/message/send', 'TextMeController@sendMessage');

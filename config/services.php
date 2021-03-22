@@ -30,15 +30,15 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'telco' => [
-        'url' => env('TELCO_API_URL'),
-        'grant_type' => env('TELCO_API_GRANT_TYPE'),
-        'client_id' => env('TELCO_CLIENT_ID'),
-        'client_secret' => env('TELCO_CLIENT_SECRET'),
-        'username' => env('TELCO_USERNAME'),
-        'password' => env('TELCO_PASSWORD'),
-        'scope' => env('TELCO_SCOPE'),
-        'reseller_id' => env('TELCO_RESELLER_ID')
+    'text_me_api' => [
+        'url' => env('TEXT_ME_API_URL'),
+        'grant_type' => env('TEXT_ME_API_GRANT_TYPE'),
+        'client_id' => env('TEXT_ME_CLIENT_ID'),
+        'client_secret' => env('TEXT_ME_CLIENT_SECRET'),
+        'username' => env('TEXT_ME_USERNAME'),
+        'password' => env('TEXT_ME_PASSWORD'),
+        'scope' => env('TEXT_ME_SCOPE'),
+        'reseller_id' => env('TEXT_ME_RESELLER_ID')
     ],
 
     'recipient' => [

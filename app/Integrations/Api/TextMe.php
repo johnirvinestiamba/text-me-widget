@@ -4,17 +4,17 @@ namespace App\Integrations\Api;
 
 use Facades\App\Integrations\Classes\RequestApi;
 
-class Telco
+class TextMe
 {
     protected $apiUrl;
     protected $accessToken;
 
     /**
-     * Create new instance of Telco class.
+     * Create new instance of TextMe class.
      */
     public function __construct()
     {
-        $this->apiUrl = config('services.telco.url');
+        $this->apiUrl = config('services.text_me_api.url');
     }
 
     /**
@@ -27,12 +27,12 @@ class Telco
         $url = $this->apiUrl . '/oauth/token';
 
         $payload = [
-            'grant_type'    => config('services.telco.grant_type'),
-            'client_id'     => config('services.telco.client_id'),
-            'client_secret' => config('services.telco.client_secret'),
-            'username'      => config('services.telco.username'),
-            'password'      => config('services.telco.password'),
-            'scope'         => str_replace(',', ' ', config('services.telco.scope'))
+            'grant_type'    => config('services.text_me_api.grant_type'),
+            'client_id'     => config('services.text_me_api.client_id'),
+            'client_secret' => config('services.text_me_api.client_secret'),
+            'username'      => config('services.text_me_api.username'),
+            'password'      => config('services.text_me_api.password'),
+            'scope'         => str_replace(',', ' ', config('services.text_me_api.scope'))
         ];
 
         $requestOptions = [
@@ -94,11 +94,11 @@ class Telco
             $this->authorize();
         }
 
-        $telcoAccountId = (string) $this->getProfile()->account_id;
-        $url = $this->apiUrl . '/accounts/' . $telcoAccountId . '/sub-accounts';
+        $accountId = (string) $this->getProfile()->account_id;
+        $url = $this->apiUrl . '/accounts/' . $accountId . '/sub-accounts';
 
         $data = [
-            'account_number' => config('services.telco.reseller_id'),
+            'account_number' => config('services.text_me_api.reseller_id'),
             'recursive'      => 1
         ];
 
@@ -118,13 +118,13 @@ class Telco
         $childrenAccounts = $response->children;
 
         foreach ($childrenAccounts as $childrenAccount) {
-            if ($response->parent_id == $telcoAccountId) {
+            if ($response->parent_id == $accountId) {
                 return $childrenAccount->id;
             }
 
             if (count($childrenAccount->child) > 0) {
                 foreach ($childrenAccount as $childchildrenAccount) {
-                    if ($response->parent_id == $telcoAccountId) {
+                    if ($response->parent_id == $accountId) {
                         return $childchildrenAccount->id;
                     }
                 }

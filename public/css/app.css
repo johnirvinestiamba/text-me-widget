@@ -19,7 +19,7 @@ input, textarea, button {
 }
 
 /* Overriding styles */
-::-webkit-input-placeholder {
+::-webkit-input-placeholder, .input-group-text {
     font-size: 12px!important;
 }
 

@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Integrations\Api\Telco;
+use App\Integrations\Api\TextMe;
 use Illuminate\Http\Request as Request;
 
-class TelcoController extends Controller {
+class TextMeController extends Controller {
 
-    protected $telco;
+    protected $textMe;
 
-    public function __construct(Telco $telco)
+    public function __construct(TextMe $textMe)
     {
-        $this->telco = $telco;
+        $this->textMe = $textMe;
     }
 
     /**
@@ -34,7 +34,7 @@ class TelcoController extends Controller {
 
         $data['message'] = $message;
 
-        $response = $this->telco->sendMessage($data);
+        $response = $this->textMe->sendMessage($data);
 
         return response()->json($response, 200);
     }
