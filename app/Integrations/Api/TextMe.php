@@ -147,7 +147,7 @@ class TextMe
 
         $data = [
             'source' => 'tel:' . $messageRequest['reply_to'],
-            'destination' => 'user:' . config('services.recipient.user') . '@' . config('services.recipient.domain'),
+            'destination' => 'user:' . $messageRequest['destination'],
             'message' => $messageRequest['message']
         ];
 

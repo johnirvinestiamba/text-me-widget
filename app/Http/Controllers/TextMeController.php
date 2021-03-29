@@ -24,9 +24,15 @@ class TextMeController extends Controller {
     {
         $this->validate($request, [
             'reply_to' => 'required|string',
-            'message' => 'required|string'
+            'message' => 'required|string',
+            'destination' => 'required|string|regex:/^[^\s@]+@[^\s@]+$/'
         ]);
         $data = $request->json()->all();
+
+        // Check if destination's domain is on the list
+        if (!in_array(explode('@', $data['destination'])[1], config('domains.text_me'))) {
+            return response()->json(['error' => 'Invalid destination.'], 400);
+        }
 
         $message = 'This phone number is requesting to communicate via SMS' . "\n";
         $message = $message . 'Phone number: ' . $data['reply_to'] . "\n";

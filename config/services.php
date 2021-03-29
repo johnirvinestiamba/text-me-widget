@@ -39,11 +39,5 @@ return [
         'password' => env('TEXT_ME_PASSWORD'),
         'scope' => env('TEXT_ME_SCOPE'),
         'reseller_id' => env('TEXT_ME_RESELLER_ID')
-    ],
-
-    'recipient' => [
-        'user' => env('MESSAGE_RECIPIENT_USER'),
-        'domain' => env('MESSAGE_RECIPIENT_DOMAIN')
     ]
-
 ];

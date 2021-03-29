@@ -69,7 +69,10 @@
                     We will text you
                 <?php endif; ?>
             </span>
-            <?php $placeholder = array_key_exists('messagePlaceholder', $_GET) ? $_GET['messagePlaceholder'] : 'Enter topic'; ?>
+            <?php 
+                $placeholder = array_key_exists('messagePlaceholder', $_GET) ? $_GET['messagePlaceholder'] : 'Enter topic';
+                $recipient = array_key_exists('recipient', $_GET) ? $_GET['recipient'] : '';
+            ?>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">+1</span>
@@ -114,7 +117,8 @@
 
                 const postData = {
                     reply_to: '1' + replyToInput.value.replace(/[\(\)\s\-]/g, ''),
-                    message: messageInput.value
+                    message: messageInput.value,
+                    destination: '<?= $recipient ?>'
                 };
 
                 // Validate Phone Number
